@@ -1,10 +1,9 @@
 import { Box, HStack, Input, Spinner, VStack } from "@chakra-ui/react";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
-import { stringify } from "querystring";
 import { useState } from "react";
 import { InputSearch } from "../components/InputSearch";
-import { ReposCard } from "../components/ReposCard";
+import { RepositoryCard } from "../components/RepositoryCard";
 import { Layout } from "../layout";
 import { getUserInfo } from "../services/queries/getUserInfo";
 
@@ -14,7 +13,7 @@ const Home: NextPage = () => {
 
   const queryClient = new QueryClient();
 
-  const { data: userReposData, isLoading } = useQuery(
+  const { data: userRepositorysData, isLoading } = useQuery(
     ["userNameSearch", userToSearch],
     () => getUserInfo(userToSearch),
     {
@@ -31,7 +30,6 @@ const Home: NextPage = () => {
       setUserToSearch(userName);
     }
   };
-  console.log(userReposData, isLoading);
 
   return (
     <Layout>
@@ -44,10 +42,10 @@ const Home: NextPage = () => {
           {isLoading && enableSearch ? (
             <Spinner />
           ) : (
-            Boolean(userReposData) && (
+            Boolean(userRepositorysData) && (
               <VStack>
-                {userReposData?.map((repo) => (
-                  <ReposCard key={repo.id} />
+                {userRepositorysData?.map((repository) => (
+                  <RepositoryCard key={repository.id} repository={repository} />
                 ))}
               </VStack>
             )

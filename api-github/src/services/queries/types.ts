@@ -1,6 +1,6 @@
-export type GithubUserResponse = Repos[];
+export type GithubUserResponse = Repository[];
 
-type Repos = {
+export type Repository = {
   allow_forking: true;
   archive_url: string;
   archived: boolean;
