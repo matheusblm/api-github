@@ -113,3 +113,12 @@ export type UserInfo = {
   name: string;
   public_repos: number;
 };
+
+export type UserFollowers = Followers[];
+
+type Followers = {
+  avatar_url: string;
+  html_url: string;
+  id: number;
+  login: string;
+};

@@ -1,7 +1,16 @@
-import { Box, Flex, HStack, Input, Spinner, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  Input,
+  Spinner,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 import { useState } from "react";
+import { FollowersList } from "../components/FollowersList";
 import { Header } from "../components/Header";
 import { InputSearch } from "../components/InputSearch";
 import { RepositoryCard } from "../components/RepositoryCard";
@@ -71,14 +80,28 @@ const Home: NextPage = () => {
                       <UserResult userData={userInfoData} />
                     </Flex>
                   </Box>
-                  <VStack maxH="400px" overflow="auto">
-                    {userRepositorysData?.map((repository) => (
-                      <RepositoryCard
-                        key={repository.id}
-                        repository={repository}
-                      />
-                    ))}
-                  </VStack>
+                  <Flex
+                    gridGap="20px"
+                    flexDir={["column", "column", "column", "row", "row"]}
+                  >
+                    <Box>
+                      <Text size="xl">Repositorios</Text>
+                      <VStack maxH="400px" overflow="auto">
+                        {userRepositorysData?.map((repository) => (
+                          <RepositoryCard
+                            key={repository.id}
+                            repository={repository}
+                          />
+                        ))}
+                      </VStack>
+                    </Box>
+                    <Box>
+                      <Text size="xl">Seguidores</Text>
+                      <VStack maxH="400px" overflow="auto">
+                        <FollowersList userName={userInfoData?.login} />
+                      </VStack>
+                    </Box>
+                  </Flex>
                 </VStack>
               </Box>
             )
