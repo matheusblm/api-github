@@ -1,4 +1,4 @@
-import { Box, Flex, HStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { Header } from "../components/Header";
 
@@ -9,12 +9,11 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <Box>
-      <HStack spacing="6px" align="start">
-        <Header />
-        <Flex w="100%" py={6} maxW="100%" px={6}>
+      <VStack spacing="6px" align="start">
+        <Flex w="100%" maxW="100%" flexDir="column">
           {children}
         </Flex>
-      </HStack>
+      </VStack>
     </Box>
   );
 };

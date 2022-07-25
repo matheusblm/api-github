@@ -101,3 +101,15 @@ type OwnerData = {
   type: string;
   url: string;
 };
+
+export type UserInfo = {
+  avatar_url: string;
+  bio: string;
+  followers: number;
+  following: number;
+  html_url: string;
+  id: number;
+  login: string;
+  name: string;
+  public_repos: number;
+};

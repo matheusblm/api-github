@@ -1,32 +1,28 @@
-import { Box, Flex, Stack } from "@chakra-ui/react";
+import { Box, Flex, HStack, Icon, Stack, Text, VStack } from "@chakra-ui/react";
+import { ReactNode } from "react";
+import { AiFillGithub } from "react-icons/ai";
 
-export const Header = () => {
+type HeaderProps = {
+  children: ReactNode;
+};
+
+export const Header = ({ children }: HeaderProps) => {
   return (
-    <Box>
-      <Flex
-        bg={"white"}
-        color={"gray.600"}
-        minH={"50px"}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        align={"center"}
-      >
-        <Stack direction={"row"} spacing={2} alignItems="center">
-          {[1, 2, 3].map((navItem) => (
-            <Box key={navItem}>
-              <Box
-                p={2}
-                fontSize={"md"}
-                fontWeight={500}
-                _hover={{
-                  textDecoration: "none",
-                  cursor: "pointer",
-                }}
-              ></Box>
-            </Box>
-          ))}
-        </Stack>
-      </Flex>
+    <Box bg="#e4e4e4" w="100%">
+      <HStack justifyContent="center" gridGap="50px">
+        <Box>
+          <Flex flexDir="column">
+            <HStack>
+              <Icon fontSize="2xl" as={AiFillGithub} />
+              <Text fontSize="2xl">GitHub Search User - API</Text>
+            </HStack>
+            <Text fontSize="xs" fontWeight="light" textAlign="center">
+              Busque usuarios no github e veja seus repositorios!
+            </Text>
+          </Flex>
+        </Box>
+        <Box ml="20px">{children}</Box>
+      </HStack>
     </Box>
   );
 };
